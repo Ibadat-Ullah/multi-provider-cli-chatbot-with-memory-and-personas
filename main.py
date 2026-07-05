@@ -1,0 +1,37 @@
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+from groq import Groq
+from google import genai
+
+load_dotenv()
+
+openai = os.getenv("OPENAI_API_KEY")
+groq = os.getenv("GROQ_API_KEY")
+google = os.getenv("GEMINI_API_KEY")
+# client = OpenAI()
+
+# response = client.responses.create(
+#     model="gpt-4o-mini", input="What is artificial Intelligence"
+# )
+# print(response.output_text)
+
+# client = genai.Client()
+
+# response = client.interactions.create(
+#     model="gemini-3.5-flash", input="What is Artificial Intelligence"
+# )
+
+# print(response.output_text)
+
+client = Groq()
+
+while True:
+    command = input("Enter your prompt here: ")
+    if (command == "exit") or command == "quit" or command == "close":
+        break
+    response = client.chat.completions.create(
+        messages=[{"role": "user", "content": command}],
+        model="llama-3.3-70b-versatile",
+    )
+    print(response.choices[0].message.content)
