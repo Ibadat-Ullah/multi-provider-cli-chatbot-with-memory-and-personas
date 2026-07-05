@@ -54,6 +54,27 @@ while True:
     if (command == "exit") or command == "quit" or command == "close":
         break
 
+    if command.startswith("/help"):
+        print("Commands:")
+        print("  /persona <name>   - switch persona")
+        print("  /history [n]      - show last n turns (default 5)")
+        print("  /reset            - clear conversation, keep current persona")
+        print("  exit / quit / close - save and quit")
+        continue
+
+    if command.startswith("/history"):
+        parts = command.split()
+        n = int(parts[1]) if len(parts) == 2 and parts[1].isdigit() else 5
+        for turn in command_history[-n:]:
+            print(f"{turn['role']}: {turn['content']}")
+            continue
+
+    if command.startswith("/reset"):
+        command_history = [{"role": "system", "content": personas[current_persona]}]
+        with open("memory.json", "w") as f:
+            json.dump(command_history, f)
+        print(f"Conversation Cleared, Persona kept : {current_persona}")
+
     if command.startswith("/persona"):
         parts = command.split()
         if len(parts) == 2 and parts[1] in personas:
@@ -64,7 +85,7 @@ while True:
             }
             print(f"Switched to: {current_persona}")
         else:
-            print("Usage: /persona <name>. Available:", " ".join(personas.keys))
+            print("Usage: /persona <name>. Available:", " ".join(personas.keys()))
             continue
     command_history.append({"role": "user", "content": command})
     response = client.chat.completions.create(
