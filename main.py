@@ -1,4 +1,5 @@
 import os
+import json
 from dotenv import load_dotenv
 from openai import OpenAI
 from groq import Groq
@@ -26,7 +27,14 @@ google = os.getenv("GEMINI_API_KEY")
 
 client = Groq()
 
-command_history = []
+if os.path.exists("memory.json"):
+    try:
+        with open("memory.json", "r") as f:
+            command_history = json.load(f)
+    except json.JSONDecodeError:
+        command_history = []
+else:
+    command_history = []
 
 while True:
     command = input("Enter your prompt here: ")
@@ -40,6 +48,10 @@ while True:
     command_history.append(
         {"role": "assistant", "content": response.choices[0].message.content}
     )
+
+    with open("memory.json", "w") as f:
+        json.dump(command_history, f)
+
     print(response.choices[0].message.content)
     print()
     print()
