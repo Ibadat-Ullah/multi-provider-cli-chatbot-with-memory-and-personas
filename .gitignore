@@ -3,5 +3,9 @@
 .env.*
 *.env
 
-# Virtual environment
+# Virtual environments
 agentai/
+venv/
+.venv/
+env/
+ENV/
