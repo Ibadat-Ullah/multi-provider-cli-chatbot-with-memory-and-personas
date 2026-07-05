@@ -26,12 +26,21 @@ google = os.getenv("GEMINI_API_KEY")
 
 client = Groq()
 
+command_history = []
+
 while True:
     command = input("Enter your prompt here: ")
     if (command == "exit") or command == "quit" or command == "close":
         break
+    command_history.append({"role": "user", "content": command})
     response = client.chat.completions.create(
-        messages=[{"role": "user", "content": command}],
+        messages=command_history,
         model="llama-3.3-70b-versatile",
     )
+    command_history.append(
+        {"role": "assistant", "content": response.choices[0].message.content}
+    )
     print(response.choices[0].message.content)
+    print()
+    print()
+    print(command_history)
