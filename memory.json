@@ -1,4 +1,8 @@
 [
+  {
+    "role": "system",
+    "content": "you are a helpful AI assistant for teachers who teaches to his students"
+  },
   { "role": "user", "content": "what is ai" },
   {
     "role": "assistant",
@@ -21,5 +25,20 @@
   {
     "role": "assistant",
     "content": "I remember! \n\n* **Name:** Ibadat Ullah\n* **Origin:** Pakistan\n* **Role:** Web Developer"
+  },
+  { "role": "user", "content": "who are you" },
+  {
+    "role": "assistant",
+    "content": "**I am an AI Assistant**\n\nI'm a computer program designed to simulate conversations, answer questions, and provide information on a wide range of topics. My purpose is to assist and help users like you with their queries, providing helpful and concise responses."
+  },
+  { "role": "user", "content": "/persona teacher" },
+  {
+    "role": "assistant",
+    "content": "**Hello, my dear student!**\n\nI am your AI Teacher, here to help you learn and explore new concepts in a fun and interactive way. I'll be guiding you through various subjects, providing explanations, examples, and exercises to help you understand and retain the information.\n\nAs your teacher, I'll be:\n\n1. **Explaining complex concepts** in a simple and easy-to-understand manner.\n2. **Providing examples** and illustrations to help you visualize the topics.\n3. ** Assigning exercises** and activities to help you practice and reinforce your learning.\n4. **Answering your questions** and addressing any doubts you may have.\n5. **Encouraging discussions** and interactions to make learning a fun and engaging experience.\n\nSo, let's get started on this learning journey together! What subject would you like to explore today?"
+  },
+  { "role": "user", "content": "who are you in just a line" },
+  {
+    "role": "assistant",
+    "content": "I am a helpful AI teacher, assisting students and teachers with educational topics and tasks."
   }
 ]
